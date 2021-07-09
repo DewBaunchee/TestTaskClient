@@ -1,0 +1,15 @@
+.error-container {
+    text-align: center;
+    padding-top: 100px;
+}
+
+.error-text {
+    background: #F5F5F5;
+
+    padding: 50px 100px;
+    display: inline-block;
+
+    text-align: center;
+    font-size: 4rem;
+    font-weight: bold;
+}

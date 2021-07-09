@@ -28,8 +28,8 @@ module.exports = function (config) {
       dir: require('path').join(__dirname, './coverage/client'),
       subdir: '.',
       reporters: [
-        { type: 'html' },
-        { type: 'text-summary' }
+        { sensorType: 'html' },
+        { sensorType: 'text-summary' }
       ]
     },
     reporters: ['progress', 'kjhtml'],

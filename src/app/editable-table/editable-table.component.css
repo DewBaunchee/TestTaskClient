@@ -1,0 +1,40 @@
+table {
+    font-weight: bold;
+    width: 100%;
+}
+
+table td, th {
+    border: 2px #878787 solid;
+    padding: 10px;
+    background: #E7E7E7;
+    text-align: center;
+}
+
+table .hidden {
+    visibility: hidden;
+    border: none;
+}
+
+table th {
+    font-size: 1.2rem;
+}
+
+table td .table-link {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+table .table-icon {
+    height: 30px;
+    width: 30px;
+}
+
+.edit-action-cell, .remove-action-cell {
+    cursor: pointer;
+}
+
+.edit-action-cell {
+}
+
+.remove-action-cell {
+}

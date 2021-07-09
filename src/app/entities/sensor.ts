@@ -2,10 +2,10 @@ export interface Sensor {
     id: number;
     name: string;
     model: string;
-    type: string;
+    sensorType: string;
     rangeFrom: number;
     rangeTo: number;
-    unit: string;
+    unitType: string;
     location: string,
     description:string
 }

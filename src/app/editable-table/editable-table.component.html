@@ -1,1 +1,26 @@
-<p>editable-table works!</p>
+<table>
+    <tr>
+        <th class="hidden" *ngIf="editable"></th>
+        <th>Name</th>
+        <th>Model</th>
+        <th>Type</th>
+        <th>Range</th>
+        <th>Unit</th>
+        <th>Location</th>
+    </tr>
+    <tr *ngFor="let sensor of sensors">
+        <td class="edit-action-cell" *ngIf="editable" (click)="editRequest.emit(sensor.id)">
+            <img src="assets/edit-icon.png" alt="Edit" class="table-icon"/>
+        </td>
+        <td><a class="table-link" (click)="editRequest.emit(sensor.id)"
+               [title]="sensor.description">{{ sensor.name }}</a></td>
+        <td>{{ sensor.model }}</td>
+        <td>{{ sensor.sensorType }}</td>
+        <td>{{ sensor.rangeFrom + " - " + sensor.rangeTo + (sensor.unitType === "%" ? "%" : "") }}</td>
+        <td>{{ sensor.unitType }}</td>
+        <td>{{ sensor.location }}</td>
+        <td class="remove-action-cell" *ngIf="editable" (click)="removeRequest.emit(sensor.id)">
+            <img class="table-icon" src="assets/remove-icon.png" alt="Remove">
+        </td>
+    </tr>
+</table>
