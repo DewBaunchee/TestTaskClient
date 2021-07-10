@@ -17,6 +17,7 @@ import {LogoutComponent} from './logout/logout.component';
 import {AuthGuardService} from './services/auth-guard.service';
 
 const appRoutes: Routes = [
+    {path: '', redirectTo: 'login', pathMatch: 'full'},
     {path: 'login', component: LoginFormComponent},
     {path: 'sensors', component: SensorList, canActivate: [AuthGuardService]},
     {path: 'sensors/edit', component: SensorEditFormComponent, canActivate: [AuthGuardService]},
