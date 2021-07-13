@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
-import {SensorService} from '../../services/sensor.service';
-import {SensorsAction} from '../actions/sensors.action';
+import {Store} from '@ngrx/store';
 import {catchError, map, mergeAll} from 'rxjs/operators';
 import {of} from 'rxjs';
+import {SensorsAction} from '../actions/sensors.action';
 import {SensorsState} from '../state/sensors.state';
-import {Store} from '@ngrx/store';
+import {SensorService} from '../../services/sensor.service';
 import {SensorsSelector} from "../selectors/sensors.selector";
 
 @Injectable()

@@ -1,4 +1,4 @@
-import {Sensor} from "../../entities/sensor";
+import {Sensor} from '../../entities/sensor';
 
 export interface SensorsState {
     sensors: Sensor[];

@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Store} from "@ngrx/store";
-import {RouterSelector} from "../../store/selectors/router.selector";
-import {SensorsSelector} from "../../store/selectors/sensors.selector";
-import {SensorsAction} from "../../store/actions/sensors.action";
-import {AuthenticationSelector} from "../../store/selectors/authentication.selector";
+import {Store} from '@ngrx/store';
+import {RouterSelector} from '../../store/selectors/router.selector';
+import {SensorsSelector} from '../../store/selectors/sensors.selector';
+import {SensorsAction} from '../../store/actions/sensors.action';
+import {AuthenticationSelector} from '../../store/selectors/authentication.selector';
 
 @Component({
     selector: 'app-sensor-edit-form',
@@ -44,10 +44,11 @@ export class SensorEditFormComponent implements OnInit {
         this.store.select(SensorsSelector.currentSensor).subscribe(value => {
             if (value !== undefined) {
                 this.sensorEditForm.setValue(value);
-            } else {
-                if (this.isFormSubmitted) {
-                    this.router.navigate(['sensors']).then();
-                }
+            }
+        });
+        this.store.select(SensorsSelector.currentSensors).subscribe(() => {
+            if (this.isFormSubmitted) {
+                this.router.navigate(['sensors']).then();
             }
         });
         this.store.select(SensorsSelector.sensorTypes).subscribe(value => this.sensorTypes = value);
@@ -62,12 +63,12 @@ export class SensorEditFormComponent implements OnInit {
 
     onSubmit() {
         if (this.sensorEditForm.valid) {
+            this.isFormSubmitted = true;
             if (this.sensorEditForm.value.id == -1) {
                 this.store.dispatch(SensorsAction.addSensor({sensor: this.sensorEditForm.value}));
             } else {
                 this.store.dispatch(SensorsAction.saveSensor({sensor: this.sensorEditForm.value}));
             }
-            this.isFormSubmitted = true;
         } else {
             this.sensorEditForm.markAllAsTouched();
         }

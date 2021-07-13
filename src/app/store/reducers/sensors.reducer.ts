@@ -1,13 +1,17 @@
-import {createReducer, on} from "@ngrx/store";
-import {initialSensorsState} from "../state/sensors.state";
-import {SensorsAction} from "../actions/sensors.action";
-import {AuthenticationAction} from "../actions/authentication.action";
+import {createReducer, on} from '@ngrx/store';
+import {initialSensorsState} from '../state/sensors.state';
+import {SensorsAction} from '../actions/sensors.action';
+import {AuthenticationAction} from '../actions/authentication.action';
 
 export const sensorsReducer = createReducer(
     initialSensorsState,
     on(SensorsAction.getSensors, (state, {pageIndex, amountOnPage, searchCondition}) => ({
         ...state,
-        currentPage: pageIndex === undefined ? state.currentPage : pageIndex,
+        currentPage: searchCondition === undefined
+            ? pageIndex === undefined
+                ? state.currentPage
+                : pageIndex
+            : 0,
         amountOnPage: amountOnPage === undefined ? state.amountOnPage : amountOnPage,
         searchCondition: searchCondition === undefined ? state.searchCondition : searchCondition
     })),
@@ -44,6 +48,7 @@ export const sensorsReducer = createReducer(
         ...state,
         totalAmount: totalAmount === undefined ? state.totalAmount : totalAmount,
         sensors: sensors === undefined ? state.sensors : sensors,
+        currentSensor: undefined,
         lastError: undefined
     })),
     on(SensorsAction.getSensorSuccess, (state, {sensor}) => ({

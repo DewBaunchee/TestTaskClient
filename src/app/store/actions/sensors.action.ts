@@ -1,5 +1,5 @@
-import {createAction, props} from "@ngrx/store";
-import {Sensor} from "../../entities/sensor";
+import {createAction, props} from '@ngrx/store';
+import {Sensor} from '../../entities/sensor';
 
 export namespace SensorsAction {
 

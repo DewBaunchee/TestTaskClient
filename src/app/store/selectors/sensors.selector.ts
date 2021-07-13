@@ -1,8 +1,8 @@
-import {createFeatureSelector, createSelector} from "@ngrx/store";
-import {SensorsState} from "../state/sensors.state";
+import {createFeatureSelector, createSelector} from '@ngrx/store';
+import {SensorsState} from '../state/sensors.state';
 
 export namespace SensorsSelector {
-    export const state = createFeatureSelector<SensorsState>("sensors");
+    export const state = createFeatureSelector<SensorsState>('sensors');
 
     export const currentSensors = createSelector(state, state => state.sensors);
 

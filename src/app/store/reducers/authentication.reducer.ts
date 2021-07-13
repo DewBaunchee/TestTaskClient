@@ -1,6 +1,6 @@
-import {initialAuthState} from "../state/authentication.state";
-import {AuthenticationAction} from "../actions/authentication.action";
-import {createReducer, on} from "@ngrx/store";
+import {initialAuthState} from '../state/authentication.state';
+import {AuthenticationAction} from '../actions/authentication.action';
+import {createReducer, on} from '@ngrx/store';
 
 export const authenticationReducer = createReducer(
     initialAuthState,

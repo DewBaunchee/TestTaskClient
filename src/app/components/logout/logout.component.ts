@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {Store} from "@ngrx/store";
-import {AuthenticationState} from "../../store/state/authentication.state";
-import {AuthenticationAction} from "../../store/actions/authentication.action";
-import {AuthenticationSelector} from "../../store/selectors/authentication.selector";
+import {Store} from '@ngrx/store';
+import {AuthenticationState} from '../../store/state/authentication.state';
+import {AuthenticationAction} from '../../store/actions/authentication.action';
+import {AuthenticationSelector} from '../../store/selectors/authentication.selector';
 
 @Component({
     selector: 'app-logout',

@@ -8,13 +8,13 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 export class ListNavigatorComponent implements OnInit {
 
     @Input() amountOnPage: number = 1;
+    @Input() currentPageIndex: number = 0;
     @Input() totalAmount: number = 0;
     @Input() pageShortcutsAmount: number = 3;
 
     @Output() onChanged = new EventEmitter();
 
     pageAmount: number = 0;
-    currentPageIndex: number = 0;
     pagesShortcuts: number[] = [];
 
     constructor() {

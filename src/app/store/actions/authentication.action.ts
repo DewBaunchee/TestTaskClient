@@ -1,5 +1,5 @@
-import {createAction, props} from "@ngrx/store";
-import {Authentication} from "../../entities/authentication";
+import {createAction, props} from '@ngrx/store';
+import {Authentication} from '../../entities/authentication';
 
 export namespace AuthenticationAction {
 

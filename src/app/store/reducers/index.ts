@@ -1,11 +1,10 @@
-import {ActionReducer, ActionReducerMap, MetaReducer} from '@ngrx/store';
+import {ActionReducerMap, MetaReducer} from '@ngrx/store';
+import {routerReducer, RouterReducerState} from '@ngrx/router-store';
 import {environment} from '../../../environments/environment';
-import {routerReducer, RouterReducerState} from "@ngrx/router-store";
-import {AuthenticationState} from "../state/authentication.state";
-import {authenticationReducer} from "./authentication.reducer";
-import {SensorsState} from "../state/sensors.state";
-import {sensorsReducer} from "./sensors.reducer";
-import {localStorageSync} from "ngrx-store-localstorage";
+import {AuthenticationState} from '../state/authentication.state';
+import {authenticationReducer} from './authentication.reducer';
+import {SensorsState} from '../state/sensors.state';
+import {sensorsReducer} from './sensors.reducer';
 
 export interface State {
     router: RouterReducerState;

@@ -1,8 +1,8 @@
 import {createFeatureSelector, createSelector} from '@ngrx/store'
-import {AuthenticationState} from "../state/authentication.state";
+import {AuthenticationState} from '../state/authentication.state';
 
 export namespace AuthenticationSelector {
-    export const state = createFeatureSelector<AuthenticationState>("auth");
+    export const state = createFeatureSelector<AuthenticationState>('auth');
 
     export const authentication = createSelector(state, state => state.currentAuth);
 

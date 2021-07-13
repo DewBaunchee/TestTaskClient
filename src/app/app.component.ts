@@ -1,6 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
-import {AuthService} from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,10 +7,9 @@ import {AuthService} from './services/auth.service';
 })
 export class AppComponent implements OnInit{
 
-  constructor(private router: Router, private authService: AuthService) {
+  constructor() {
   }
 
   ngOnInit() {
-      if(false) this.router.navigate(['sensors']).then();
   }
 }

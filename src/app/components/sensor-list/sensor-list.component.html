@@ -33,6 +33,7 @@
                 <app-list-navigator class="float-right"
                                     (onChanged)="setPageSelected($event)"
                                     [totalAmount]="totalSensorsAmountByCondition"
+                                    [currentPageIndex]="currentPageIndex"
                                     [amountOnPage]="sensorsAmountOnPage"
                                     [pageShortcutsAmount]="3"></app-list-navigator>
             </div>

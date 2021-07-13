@@ -1,15 +1,13 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {environment} from '../../environments/environment';
+import {Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
+import {AuthenticationState} from '../store/state/authentication.state';
+import {AuthenticationSelector} from '../store/selectors/authentication.selector';
+import {AuthenticationAction} from '../store/actions/authentication.action';
+import {Authentication} from '../entities/authentication';
 import jwtDecode from 'jwt-decode';
-import {environment} from "../../environments/environment";
-import {AuthenticationState} from "../store/state/authentication.state";
-import {Store} from "@ngrx/store";
-import {AuthenticationSelector} from "../store/selectors/authentication.selector";
-import {AuthenticationAction} from "../store/actions/authentication.action";
-import {Authentication} from "../entities/authentication";
-import {SensorsAction} from "../store/actions/sensors.action";
-
 
 @Injectable({
     providedIn: 'root'
@@ -24,7 +22,7 @@ export class AuthService {
         let authenticationJson: string | null = localStorage.getItem('authentication');
         if (authenticationJson !== null) {
             let authentication: Authentication = JSON.parse(authenticationJson);
-            if(authentication && authentication.expiredDate > Date.now()) {
+            if (authentication && authentication.expiredDate > Date.now()) {
                 this.store.dispatch(AuthenticationAction.newAuthenticationSuccess({auth: authentication}));
             } else {
                 localStorage.removeItem('authentication');

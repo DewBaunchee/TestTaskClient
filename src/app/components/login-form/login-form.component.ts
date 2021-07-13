@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {AuthService} from "../../services/auth.service";
-import {Router} from "@angular/router";
-import {AuthenticationState} from "../../store/state/authentication.state";
-import {Store} from "@ngrx/store";
-import {AuthenticationAction} from "../../store/actions/authentication.action";
-import {AuthenticationSelector} from "../../store/selectors/authentication.selector";
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+import {Store} from '@ngrx/store';
+import {AuthService} from '../../services/auth.service';
+import {AuthenticationState} from '../../store/state/authentication.state';
+import {AuthenticationAction} from '../../store/actions/authentication.action';
+import {AuthenticationSelector} from '../../store/selectors/authentication.selector';
 
 @Component({
     selector: 'app-login-form',
@@ -26,9 +26,9 @@ export class LoginFormComponent implements OnInit {
             }
         });
         this.store.select(AuthenticationSelector.error).subscribe(value => {
-           if(value) {
-               alert(value);
-           }
+            if (value) {
+                alert(value);
+            }
         });
     }
 

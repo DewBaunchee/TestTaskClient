@@ -1,12 +1,12 @@
-import {Injectable} from "@angular/core";
-import {Actions, createEffect, ofType} from "@ngrx/effects"
-import {AuthService} from "../../services/auth.service";
-import {AuthenticationAction} from "../actions/authentication.action";
-import {catchError, map, mergeAll} from "rxjs/operators";
-import {of} from "rxjs";
-import {AuthenticationState} from "../state/authentication.state";
-import {Store} from "@ngrx/store";
-import {AuthenticationSelector} from "../selectors/authentication.selector";
+import {Injectable} from '@angular/core';
+import {Actions, createEffect, ofType} from '@ngrx/effects'
+import {Store} from '@ngrx/store';
+import {catchError, map, mergeAll} from 'rxjs/operators';
+import {of} from 'rxjs';
+import {AuthenticationAction} from '../actions/authentication.action';
+import {AuthService} from '../../services/auth.service';
+import {AuthenticationState} from '../state/authentication.state';
+import {AuthenticationSelector} from '../selectors/authentication.selector';
 
 @Injectable()
 export class AuthenticationEffect {

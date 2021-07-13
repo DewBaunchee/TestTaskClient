@@ -20,9 +20,8 @@ import {AuthGuardService} from "./services/auth-guard.service";
 import {AuthenticationEffect} from "./store/effects/authentication.effect";
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../environments/environment';
-import {StoreRouterConnectingModule} from "@ngrx/router-store";
-import {SensorsEffect} from "./store/effects/sensors.effect";
-import {localStorageSync} from "ngrx-store-localstorage";
+import {StoreRouterConnectingModule} from '@ngrx/router-store';
+import {SensorsEffect} from './store/effects/sensors.effect';
 
 const appRoutes: Routes = [
     {path: 'login', component: LoginFormComponent},

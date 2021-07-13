@@ -1,4 +1,4 @@
-import {Authentication} from "../../entities/authentication";
+import {Authentication} from '../../entities/authentication';
 
 export interface AuthenticationState {
     currentAuth: Authentication;

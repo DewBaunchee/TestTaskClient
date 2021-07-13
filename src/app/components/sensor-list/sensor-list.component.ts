@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {Sensor} from "../../entities/sensor";
-import {Router} from "@angular/router";
-import {Store} from "@ngrx/store";
-import {SensorsSelector} from "../../store/selectors/sensors.selector";
-import {SensorsAction} from "../../store/actions/sensors.action";
-import {AuthenticationSelector} from "../../store/selectors/authentication.selector";
+import {Router} from '@angular/router';
+import {Store} from '@ngrx/store';
+import {Sensor} from '../../entities/sensor';
+import {SensorsSelector} from '../../store/selectors/sensors.selector';
+import {SensorsAction} from '../../store/actions/sensors.action';
+import {AuthenticationSelector} from '../../store/selectors/authentication.selector';
 
 @Component({
     selector: 'app-sensor-list',

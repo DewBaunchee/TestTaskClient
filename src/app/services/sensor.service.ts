@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
+import {environment} from '../../environments/environment';
+import {Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
 import {Sensor} from '../entities/sensor';
-import {environment} from "../../environments/environment";
-import {Store} from "@ngrx/store";
-import {AuthenticationSelector} from "../store/selectors/authentication.selector";
+import {AuthenticationSelector} from '../store/selectors/authentication.selector';
 
 @Injectable({
     providedIn: 'root'

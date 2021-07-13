@@ -1,5 +1,5 @@
-import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
-import {Sensor} from "../../entities/sensor";
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Sensor} from '../../entities/sensor';
 
 @Component({
     selector: 'app-editable-table',
