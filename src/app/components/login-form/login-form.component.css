@@ -1,0 +1,39 @@
+.form-container {
+    margin: 250px auto;
+    padding: 35px 50px 100px;
+    background: #F5F5F5;
+    color: #3C3C3C;
+    font-weight: bold;
+}
+
+.form-title {
+    margin: 0;
+    font-size: 42px;
+}
+
+.form-title-hint {
+    margin: 0;
+    color: #9C9C9C;
+}
+
+.login-form {
+    margin-top: 25px;
+}
+
+.form-field-container {
+    margin: 5px 0;
+}
+
+.form-label {
+    padding: 0;
+}
+
+input.ng-touched.ng-invalid {
+    border-color: #DD0000;
+}
+
+.login-button {
+    margin-top: 15px;
+    font-size: 20px;
+    float: right;
+}

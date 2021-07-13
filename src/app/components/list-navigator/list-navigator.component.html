@@ -1,0 +1,10 @@
+<div *ngIf="totalAmount> pageAmount">
+    <button class="custom-button" (click)="setCurrentPageIndex(currentPageIndex - 1)">Prev</button>
+    <button class="custom-button"
+            *ngFor="let pageShortcut of pagesShortcuts"
+            (click)="setCurrentPageIndex(pageShortcut - 1)"
+            [class.selected]="pageShortcut - 1 === currentPageIndex">
+        {{ pageShortcut }}
+    </button>
+    <button class="custom-button" (click)="setCurrentPageIndex(currentPageIndex + 1)">Next</button>
+</div>

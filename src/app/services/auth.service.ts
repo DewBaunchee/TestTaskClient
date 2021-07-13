@@ -1,89 +1,69 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
-import {Router} from '@angular/router';
-import {GlobalProperties} from '../providers/global-properties';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import jwtDecode from 'jwt-decode';
+import {environment} from "../../environments/environment";
+import {AuthenticationState} from "../store/state/authentication.state";
+import {Store} from "@ngrx/store";
+import {AuthenticationSelector} from "../store/selectors/authentication.selector";
+import {AuthenticationAction} from "../store/actions/authentication.action";
+import {Authentication} from "../entities/authentication";
+import {SensorsAction} from "../store/actions/sensors.action";
+
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
 
-    private api: string = 'http://localhost:8080';
-    private authUsername: string = '';
-    private authPassword: string = '';
+    private readonly api: string = environment.apiAddress;
+    private readonly safeTimeGap: number = 0.1;
+    private refreshTimeout?: number;
 
-    constructor(private http: HttpClient, private router: Router,
-                private properties: GlobalProperties) {
-        this.api = properties.getServerUrl();
-    }
+    constructor(private http: HttpClient, private store: Store<AuthenticationState>) {
+        let authenticationJson: string | null = localStorage.getItem('authentication');
+        if (authenticationJson !== null) {
+            let authentication: Authentication = JSON.parse(authenticationJson);
+            if(authentication && authentication.expiredDate > Date.now()) {
+                this.store.dispatch(AuthenticationAction.newAuthenticationSuccess({auth: authentication}));
+            } else {
+                localStorage.removeItem('authentication');
+            }
+        }
 
-    public login(username: string, password: string) {
-        const basicAuth = window.btoa(username + ":" + password);
-        this.http.post(this.api + '/login', null,
-            {
-                headers: new HttpHeaders({'Authorization': 'Basic ' + basicAuth})
-            }).subscribe((response: any) => {
-            this.authPassword = password;
-            this.authUsername = username;
-            this.setCurrentToken(response);
+        this.store.select(AuthenticationSelector.authentication).subscribe((value) => {
+            let auth: Authentication = value;
+            if (auth && auth.token && Date.now() < auth.expiredDate) {
+                this.refreshTimeout = setTimeout(() => {
+                    this.store.dispatch(AuthenticationAction.refreshAuthentication());
+                }, (1 - this.safeTimeGap) * (auth.expiredDate - Date.now()));
 
-            this.http.get(this.api + '/sensors',
-                {
-                    params: new HttpParams().set('can-modify', ''),
-                    headers: new HttpHeaders({Authorization: 'Bearer ' + response.token})
-                }
-            ).subscribe(value => {
-                localStorage.setItem('can_modify', value + "");
-            });
-
-            this.router.navigate(['sensors']).then();
+                localStorage.setItem('authentication', JSON.stringify(value));
+            } else {
+                clearTimeout(this.refreshTimeout);
+                localStorage.removeItem('authentication');
+            }
         });
     }
 
-    public logout() {
-        localStorage.removeItem('token');
-        localStorage.removeItem('can_modify');
-    }
-
-    public isExpired(): boolean {
-        const token: string | null = this.getCurrentToken();
-        if(token == null) return true;
-
-        const decodedToken: any = jwtDecode(token);
-        if(decodedToken == null) return true;
-
-        return decodedToken.token_expiration_date <= new Date();
-    }
-
-    public getNewToken(): Observable<any> | null {
-        if(this.authUsername.length == 0 || this.authPassword.length == 0) return null;
-        const basicAuth = window.btoa(this.authUsername + ':' + this.authPassword);
-        const futureResponse = this.http.post(this.api + '/login', null,
+    public login(username: string, password: string): Observable<any> {
+        const basicAuth = window.btoa(username + ':' + password);
+        return this.http.post(this.api + '/login', null,
             {
                 headers: new HttpHeaders({'Authorization': 'Basic ' + basicAuth})
             });
-        futureResponse.subscribe((response: any) => {
-            this.setCurrentToken(response.token);
-        });
-        return futureResponse;
     }
 
-    public canModifyTable(): boolean {
-        return localStorage.getItem('can_modify') === 'true';
-    }
+    public getExpiredDate(token: string): number {
+        if (token == null) return 0;
 
-    public isAuthenticated(): boolean {
-        const token = localStorage.getItem('token');
-        return token !== null && !this.isExpired();
-    }
+        try {
+            const decodedToken: any = jwtDecode(token);
+            if (decodedToken == null) return 0;
 
-    public setCurrentToken(token: string) {
-        localStorage.setItem('token', token);
-    }
-
-    public getCurrentToken(): string | null {
-        return localStorage.getItem('token');
+            return decodedToken.token_expiration_date;
+        } catch (e) {
+            return 0;
+        }
     }
 }

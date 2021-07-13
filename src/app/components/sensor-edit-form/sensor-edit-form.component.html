@@ -1,0 +1,80 @@
+<div class="form-container col-xl-4 col-lg-6 col-md-8 col-sm-10">
+    <p class="form-title">Add/edit</p>
+    <form [formGroup]="sensorEditForm" (submit)="onSubmit()">
+
+        <div class="form-field-container row">
+            <label class="form-label col-4 required">Name</label>
+            <input maxlength="30" formControlName="name" class="form-field col-8" placeholder="Name"
+                   [value]="sensorEditForm.value.name" required/>
+        </div>
+
+        <div class="form-field-container">
+            <label class="form-label col-4 required">Model</label>
+            <input maxlength="15" formControlName="model" class="form-field col-8" placeholder="Model"
+                   [value]="sensorEditForm.value.model" required/>
+        </div>
+
+        <div class="form-field-container row" style="vertical-align: middle;">
+            <label class="form-label col-3 pr-3 mt-2">Range</label>
+
+            <label class="form-range-label col-1 p-0">From</label>
+
+            <div class="col-8 p-0">
+                <div class="range-field-container p-0 col-5 d-inline-block">
+                    <input formControlName="rangeFrom" class="form-field col-12"
+                           type="text" [value]="sensorEditForm.value.rangeFrom" readonly>
+                    <img (click)="incRangeFrom()" src="../../../assets/up-arrow.png" alt="Increment" class="counter-inc-img"/>
+                    <img (click)="decRangeFrom()" src="../../../assets/down-arrow.png" alt="Decrement" class="counter-dec-img"/>
+                </div>
+
+                <label class="form-range-label col-2 d-inline-block" style="text-align: center">To</label>
+
+                <div class="range-field-container p-0 col-5 d-inline-block">
+                    <input formControlName="rangeTo" class="form-field col-12"
+                           type="text" [value]="sensorEditForm.value.rangeTo" readonly>
+                    <img (click)="incRangeTo()" src="../../../assets/up-arrow.png" alt="Increment" class="counter-inc-img"/>
+                    <img (click)="decRangeTo()" src="../../../assets/down-arrow.png" alt="Decrement" class="counter-dec-img"/>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="form-field-container">
+            <label class="form-label col-4 required">Type</label>
+            <div class="select-container d-inline-block col-8 p-0">
+                <select formControlName="sensorType" class="form-field form-select-field col-12" required>
+                    <option value="" disabled>Select</option>
+                    <option *ngFor="let sensorType of sensorTypes" [value]="sensorType">{{ sensorType }}</option>
+                </select>
+                <img src="../../../assets/select-arrow.png" alt="Choose" class="select-arrow-img"/>
+            </div>
+        </div>
+
+        <div class="form-field-container">
+            <label class="form-label col-4 required">Unit</label>
+            <div class="select-container d-inline-block col-8 p-0">
+                <select formControlName="unitType" class="form-field form-select-field col-12" required>
+                    <option value="" disabled selected>Select</option>
+                    <option *ngFor="let unitType of unitTypes" [value]="unitType">{{ unitType }}</option>
+                </select>
+                <img src="../../../assets/select-arrow.png" alt="Choose" class="select-arrow-img"/>
+            </div>
+        </div>
+
+        <div class="form-field-container">
+            <label class="form-label col-4">Location</label>
+            <input maxlength="40" formControlName="location" class="form-field col-8" placeholder="Location"
+                   [value]="sensorEditForm.value.location"/>
+        </div>
+
+        <div class="form-field-container">
+            <label class="form-label col-4" style="vertical-align: top">Description</label>
+            <textarea maxlength="200" formControlName="description" class="form-field form-text-area col-8"
+                      [placeholder]=descriptionPlaceholder [value]="sensorEditForm.value.description"></textarea>
+        </div>
+
+        <button class="custom-button cancel-button col-3" routerLink="/sensors">Cancel</button>
+        <input type="submit" [hidden]="!canModify" class="custom-button submit-button col-3"
+               value="Save"/>
+    </form>
+</div>

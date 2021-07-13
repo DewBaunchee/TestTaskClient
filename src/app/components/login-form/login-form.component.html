@@ -1,0 +1,17 @@
+<div class="form-container col-xl-4 col-lg-6 col-md-8 col-sm-10">
+    <p class="form-title">Login Form</p>
+    <p class="form-title-hint">enter login and password for access</p>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+        <div class="form-field-container">
+            <label class="form-label col-3">Login</label>
+            <input formControlName="username" class="form-field col-9" placeholder="Your login"/>
+        </div>
+        <div class="form-field-container">
+            <label class="form-label col-3">Password</label>
+            <input formControlName="password" type="password" class="form-field col-9" placeholder="Your password"/>
+        </div>
+
+        <button type="submit" class="login-button custom-button col-9 p-0">Login</button>
+    </form>
+</div>

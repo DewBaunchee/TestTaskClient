@@ -8,12 +8,11 @@ import {AuthService} from './services/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-  title = 'client';
 
   constructor(private router: Router, private authService: AuthService) {
   }
 
   ngOnInit() {
-      if(this.authService.isAuthenticated()) this.router.navigate(['sensors']).then();
+      if(false) this.router.navigate(['sensors']).then();
   }
 }

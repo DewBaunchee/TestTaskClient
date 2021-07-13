@@ -10,7 +10,7 @@
     </tr>
     <tr *ngFor="let sensor of sensors">
         <td class="edit-action-cell" *ngIf="editable" (click)="editRequest.emit(sensor.id)">
-            <img src="assets/edit-icon.png" alt="Edit" class="table-icon"/>
+            <img src="../../../assets/edit-icon.png" alt="Edit" class="table-icon"/>
         </td>
         <td><a class="table-link" (click)="editRequest.emit(sensor.id)"
                [title]="sensor.description">{{ sensor.name }}</a></td>
@@ -20,7 +20,7 @@
         <td>{{ sensor.unitType }}</td>
         <td>{{ sensor.location }}</td>
         <td class="remove-action-cell" *ngIf="editable" (click)="removeRequest.emit(sensor.id)">
-            <img class="table-icon" src="assets/remove-icon.png" alt="Remove">
+            <img class="table-icon" src="../../../assets/remove-icon.png" alt="Remove">
         </td>
     </tr>
 </table>

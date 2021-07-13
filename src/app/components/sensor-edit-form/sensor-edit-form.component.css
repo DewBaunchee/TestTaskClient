@@ -1,0 +1,122 @@
+.form-container {
+    margin: 100px auto;
+    padding: 40px;
+    background: #F5F5F5;
+    color: #3C3C3C;
+    font-weight: bold;
+}
+
+/* Form title*/
+.form-title {
+    margin: 0;
+    font-size: 42px;
+}
+
+.form-title-hint {
+    margin: 0;
+    color: #9C9C9C;
+}
+
+/* All fields */
+.form-field-container {
+    margin: 5px 0;
+}
+
+.form-label {
+    padding: 0 55px 0 0;
+    text-align: right;
+}
+
+.form-label.required {
+    margin: 0 -10px 0 10px;
+}
+
+.form-label.required:after {
+    position: relative;
+    left: 2px;
+    vertical-align: super;
+    content: " *";
+}
+
+.ng-touched.ng-invalid {
+    border-color: red;
+}
+
+/* Select fields */
+.select-container {
+    height: 34px;
+}
+
+.form-select-field {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.select-arrow-img {
+    position: relative;
+    float: right;
+
+    top: -36px;
+    left: -2px;
+    height: 34px;
+    width: 34px;
+    padding: 7px;
+
+    background: #E7E7E7;
+    border-color: #878787;
+    border-style: solid;
+    border-width: 0 0 0 2px;
+    pointer-events: none;
+}
+
+/* Description */
+.form-text-area {
+    height: 160px;
+    resize: none;
+}
+
+/* Counters */
+.range-field-container {
+    height: 40px;
+}
+
+.form-range-label {
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.counter-inc-img, .counter-dec-img {
+    position: relative;
+    float: right;
+
+    height: 19px;
+    width: 26px;
+    padding: 4px;
+
+    cursor: pointer;
+
+    background: #E7E7E7;
+    border-color: #878787;
+    border-style: solid;
+    border-width: 2px;
+}
+
+.counter-inc-img {
+    top: -38px;
+}
+
+.counter-dec-img {
+    top: -19px;
+    left: 26px;
+}
+
+/* Below the form */
+.submit-button {
+    margin-left: 30px;
+    float: left;
+}
+
+.cancel-button {
+    float: right;
+}
